@@ -10,8 +10,14 @@
     {
         <tr>
             <td>@user.Email</td>
-            <td>
+            <td class="mx-3">
                 <a href="@Url.Action("AssignRole", new { userId = user.Id, role = "Admin" })">Make Admin</a>
+            </td>
+            <td class="mx-3">
+                <a href="@Url.Action("AssignRole", new { userId = user.Id, role = "I0SD1" })">Make I0SD1</a>
+            </td>
+            <td class="mx-3">
+                <a href="@Url.Action("AssignRole", new { userId = user.Id, role = "I0SD3" })">Make I0SD3</a>
             </td>
         </tr>
     }
