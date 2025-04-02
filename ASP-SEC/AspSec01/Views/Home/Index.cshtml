@@ -1,0 +1,50 @@
+﻿@{
+    ViewData["Title"] = "Encrypt / Decrypt";
+}
+<div class="container mt-5">
+    <form method="post">
+        <div class="mb-3">
+            <label for="inputText">Text</label>
+            <input type="text" name="inputText" class="form-control" required />
+        </div>
+        <div class="mb-3">
+            <label for="key">Key</label>
+            <input type="text" name="key" class="form-control" required />
+        </div>
+        <button type="submit" name="action" value="encrypt" class="btn btn-primary">Encrypt</button>
+        <button type="submit" name="action" value="decrypt" class="btn btn-secondary">Decrypt</button>
+    </form>
+
+    @if (ViewBag.ResultText != null)
+    {
+        <div class="mt-3">
+            <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#resultModal">Show Result</button>
+        </div>
+
+        <div class="modal fade" id="resultModal" tabindex="-1" aria-labelledby="resultModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Result Text</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="resultText">@ViewBag.ResultText</p>
+                        <button class="btn btn-secondary" onclick="copyToClipboard()">Copy</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@section Scripts {
+    <script>
+        function copyToClipboard() {
+            const text = document.getElementById("resultText").innerText;
+            navigator.clipboard.writeText(text).then(function () {
+                alert("Copied to clipboard!");
+            });
+        }
+    </script>
+}
